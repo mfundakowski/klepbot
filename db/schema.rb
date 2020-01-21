@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_113122) do
+ActiveRecord::Schema.define(version: 2020_01_21_212605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,9 +88,9 @@ ActiveRecord::Schema.define(version: 2020_01_21_113122) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "email", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
     t.string "category"
     t.string "group"
     t.datetime "created_at", precision: 6, null: false
@@ -99,6 +99,13 @@ ActiveRecord::Schema.define(version: 2020_01_21_113122) do
     t.bigint "contact_event_id", null: false
     t.bigint "user_id", null: false
     t.bigint "touched_id"
+    t.text "body"
+    t.text "metadata"
+    t.string "status", default: "pending", null: false
+    t.string "company_name"
+    t.text "phone_numbers", default: [], null: false, array: true
+    t.text "websites", default: [], null: false, array: true
+    t.text "possible_names", default: [], null: false, array: true
     t.index ["contact_event_id"], name: "index_contacts_on_contact_event_id"
     t.index ["contact_status_id"], name: "index_contacts_on_contact_status_id"
     t.index ["touched_id"], name: "index_contacts_on_touched_id"
