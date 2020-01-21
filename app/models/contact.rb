@@ -1,10 +1,14 @@
 class Contact < ApplicationRecord
+  validates :first_name, :last_name, :email, presence: true, if: :status_confirmed?
+
   has_many :actions, class_name: 'ContactAction', dependent: :destroy
-  belongs_to :status, class_name: 'ContactStatus', foreign_key: :contact_status_id
+  has_many :tasks
+  belongs_to :contact_status
   belongs_to :event, class_name: 'ContactEvent', foreign_key: :contact_event_id
   belongs_to :user
-  has_many :tasks
   belongs_to :touched, class_name: 'User', foreign_key: :touched_id
+
+  enum status: { pending: 'pending', confirmed: 'confirmed' }, _prefix: true
 
   def update_with_action(params)
     update(params)
