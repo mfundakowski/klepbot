@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_212605) do
+ActiveRecord::Schema.define(version: 2020_01_29_221025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 2020_01_21_212605) do
     t.bigint "touched_id"
     t.text "email_body"
     t.string "action_type", default: "update"
+    t.text "body"
+    t.text "metadata"
+    t.string "status"
+    t.string "company_name"
+    t.text "phone_numbers", default: [], null: false, array: true
+    t.text "websites", default: [], null: false, array: true
+    t.text "possible_names", default: [], null: false, array: true
     t.index ["contact_event_id"], name: "index_contact_actions_on_contact_event_id"
     t.index ["contact_id"], name: "index_contact_actions_on_contact_id"
     t.index ["contact_status_id"], name: "index_contact_actions_on_contact_status_id"
