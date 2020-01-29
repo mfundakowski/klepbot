@@ -3,7 +3,7 @@
 module Api
   class ContactsController < BaseController
     def index
-      scope = Contact.order(created_at: :desc).includes(:event, :status)
+      scope = Contact.order(created_at: :desc).includes(:event, :contact_status)
 
       @contacts = Contacts::SearchQuery.new(scope, params[:query]).().page(params[:page] || 1)
     end
@@ -36,6 +36,7 @@ module Api
       params.require(:contact).permit(
         :first_name,
         :last_name,
+        :email,
         :group,
         :category,
         :email,

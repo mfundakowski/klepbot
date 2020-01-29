@@ -22,7 +22,7 @@ json.array! @contacts do |contact|
 
   json.status do
     json.extract!(
-      contact.status,
+      contact.contact_status,
       :id,
       :color,
       :name
